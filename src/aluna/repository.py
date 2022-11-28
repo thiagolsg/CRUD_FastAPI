@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from models import Alunas
+from .model import Alunas
 
 class AlunasRepository:
     @staticmethod
