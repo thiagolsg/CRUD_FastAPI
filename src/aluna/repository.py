@@ -17,16 +17,20 @@ class AlunasRepository:
         return alunas
 
     @staticmethod
-    def find_by_id(db: Session, id: int) -> Alunas:
-        return db.query(Alunas).filter(Alunas.id == id).first()
+    def find_by_cpf(db: Session, cpf: str) -> Alunas:
+        return db.query(Alunas).filter(Alunas.cpf == cpf).first()
+
+    @staticmethod
+    def exists_by_cpf(db: Session, cpf: str) -> bool:
+        return db.query(Alunas).filter(Alunas.cpf == cpf).first() is not None
 
     @staticmethod
     def exists_by_id(db: Session, id: int) -> bool:
         return db.query(Alunas).filter(Alunas.id == id).first() is not None
 
     @staticmethod
-    def delete_by_id(db: Session, id: int) -> None:
-        alunas = db.query(Alunas).filter(Alunas.id == id).first()
+    def delete_by_cpf(db: Session, cpf: str) -> None:
+        alunas = db.query(Alunas).filter(Alunas.cpf == cpf).first()
         if alunas is not None:
             db.delete(alunas)
             db.commit()
